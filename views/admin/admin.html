@@ -1,0 +1,86 @@
+{{extend './common/layout.html'}}
+{{block 'style'}}
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+.content{
+    /* float: left; */
+}
+.increase{
+    position: absolute;
+    left:100px;
+    top: 10px;
+    background-color:  rgb(219, 180, 180);
+    line-height: 35px;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+.page li{
+    float: left;
+    padding:5px;
+    border: 1px solid black;
+    margin:0 auto;
+}
+.page{
+    position: absolute;
+    left: 100px;
+    background-color: burlywood;
+}
+</style>
+{{/block}}  
+
+    {{block 'main'}}
+        {{include './common/header.html'}}
+        <div class="content">
+            <a href="user-edit" class="increase">+新增用户</a>
+            <table border="1" cellspacing="0">
+                <tr>
+                  <th>ID</th>
+                  <th>用户名</th>
+                  <th>密码</th>
+                  <th>角色</th>
+                  <th>操作</th>
+                </tr>
+                 {{each users}}
+                <tr>
+                  <td>{{@$value._id}}</td>
+                  <!-- @消去引号 -->
+                  <td>{{$value.username}}</td>
+                  <td>{{$value.password}}</td>
+                  <td>{{$value.role}}</td>
+                  <td>
+                      <a href="/admin/user-edit?id={{@$value._id}}"><input style="color: brown;" type="button" value="编辑"></a>
+                      <a href="/admin/user-delete?id={{@$value._id}}"><input style="color: brown;" class="delete" type="button" data-id="{{@$value._id}}" value="删除"></a>
+                  </td>
+                </tr>
+                {{/each}}
+              </table>
+              <!-- 分页 -->
+              <ul class="page">
+                  <li style="display: <%= page-1<1?'none' : 'inline' %>">
+                      <a href="/admin/admin?page=<%=page-1 %>">&laquo;<</a>
+                  </li>
+                  <% for(var i=1;i<=pages;i++){ %>
+                    <li><a href="/admin/admin?page=<%=i %>">{{i}}</a></li>
+                  <% } %>
+                  <li style="display: <%=page-0+1>pages?'none' : 'inline' %>">
+                    <a href="/admin/admin?page=<%=page-0+1 %>">>&raquo;</a>
+                </li>
+              </ul>
+        </div>
+    {{/block}}
+    {{block 'script'}}
+    <script type="text/javascript">
+    $('.delete').on('click',function(){
+       
+        //获取该用户的id
+        var id = $(this).attr('data-id');
+        
+         alert('确定删除该用户'+id);
+    })
+    </script>
+    {{/block}}

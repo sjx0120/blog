@@ -1,0 +1,72 @@
+{{extend './common/layout.html'}}
+{{block 'style'}}
+<style>
+   #add{
+    margin:50px auto;
+    text-align: center;
+    border: 1px solid rgb(171, 187, 221);
+    background: url("/night.gif") repeat;
+    width: 500px;
+    padding: 30px;
+    
+} 
+span{
+    margin-right: 50px;
+}
+input{
+    margin: 30px;
+    line-height: 25px;
+}
+button{
+    width: auto;
+    color: rgb(202, 75, 101);
+    background: content-box;
+}
+h4{
+    background-color: blanchedalmond;
+}
+#add{
+    position: absolute; 
+    float: left;
+    width: 69%;
+    left: 30%;
+    top: 0px;
+}
+</style>
+
+{{/block}}
+{{block 'main'}}
+{{include './common/header.html'}}
+<div id="add">
+    <h4>{{ message }}</h4>
+    <a style="color: brown;" href="/admin/admin">返回</a>
+    <h3>{{@user && user._id }}</h3>
+    <form action="{{link}}" method="POST">
+        <span>用户名：</span>
+        <input style="color:black;" name="username" placeholder="请输入用户名" value="{{user && user.username}}">
+        <br>
+        <span>角色：</span>
+        <select style="color:black;" name="role">
+            <option style="color:black;" value="normal">普通用户</option>
+            <option style="color:black;" value="admin">管理员</option>
+        </select>
+        <br>
+        <!-- <span>状态：</span>
+        <select name="state">
+            <option value="0">禁用</option>
+            <option value="1">启用</option>
+        </select>
+        <br> -->
+        <span>密码：</span>
+        <input style="color:black;" name="password" type="password" placeholder="请输入密码">
+        <br>
+        
+        <button type="submit" >{{button}}</button>
+    </form>
+</div>
+{{/block}}
+{{block 'script'}}
+<script>
+
+</script>
+{{/block}}

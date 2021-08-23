@@ -1,0 +1,39 @@
+{{extend './layout.html'}}
+{{block 'link'}}
+<link rel="stylesheet" type="text/css" href="/css/admin/header.css">
+{{/block}}
+{{block 'main'}}
+<header>
+    <span><img class="l" src="/list.png"></span>
+    <h1>Hee Bright</h1>
+    <span><img class="r" src="/search.png"></span>
+</header>
+<div class="left">
+    <ul>
+      <li>
+        <h3>用户名：<span style="color: rgb(80, 255, 255);">{{userInfo.username}}</span></h3>
+        <ul>
+          <li><a href="user-edit">个人资料</a></li>
+          <li><a href="/admin/loginout">退出登录</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/admin/admin"><h2>用户列表</h2></a>
+      </li>
+      <li>
+        <a href="/admin/article"><h2>文章列表</h2></a>
+      </li>
+      
+    </ul>
+  </div>
+{{/block}}
+{{block 'script'}}
+<script type="text/javascript">
+// $('li').click(function(){
+  // $('li').css('border-left',"");
+  // $(this).css('border-left',"1px solid black");
+//   $('li').css('background',"");
+//   $(this).css('background','salmon');
+// })
+</script>
+{{/block}}

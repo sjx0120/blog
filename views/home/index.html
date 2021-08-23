@@ -1,0 +1,96 @@
+{{extend './common/layout.html'}}
+{{block 'style'}}
+<style>
+.articleimg{
+    height: 200px;
+}
+/* .sample{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+} */
+span{
+    margin:0 20px;
+}
+.articlename{
+    margin: 20px;
+}
+img{
+    margin:0 20px;
+    overflow: hidden;
+    height: 100%;
+}
+.des{
+    margin: 20px;
+}
+li{
+    border-bottom: 1px solid rgb(163, 170, 233);
+}
+.page li{
+    float: left;
+    padding:5px;
+    border: 1px solid black;
+    margin:0 auto;
+}
+.page{
+    position: absolute;
+    left: 100px;
+    background-color: burlywood;
+}
+.articleimg{
+     float: right;
+}
+.writing{
+  
+}
+</style>
+{{/block}}
+{{block 'main'}}
+<!-- 头部模块 -->
+{{include './common/header.html'}}
+<!-- 文章列表模块 -->
+<div class="content">
+    <ul>
+        {{each article}}
+        <a href="/home/article?id={{@$value._id}}" class="thumbnail">
+        <li>
+            <div class="articleimg">
+                 <img src="{{$value.file}}">
+            </div>
+           
+                <!-- 将内容中的html标签替换掉 /<[^>]+>/g 正则表达式，<>的任意内容被替换成空字符串
+                @将&nbsp;转换成真正的空格 
+            substr截取-->
+            <div class="writing">
+                <h3 class="articlename">{{$value.articlename}}</h3>
+                <p class="des">{{@$value.description.replace(/<[^>]+>/g,'').substr(0,150)+'...'}}</p>
+                <div class="sample">
+                <span><h3>{{$value.author.username}}</h3></span>
+                <span><h4>{{dateFormat($value.publishdate,'yyyy-mm-dd')}}</h4></span>
+            </div>
+                
+            </div>
+            
+        </li>
+    </a>
+        {{/each}}
+    </ul>
+<!-- 分页模块 -->
+<!-- 分页 -->
+<ul class="page">
+    <li style="display: <%= page-1<1?'none' : 'inline' %>">
+        <a href="/home/index?page=<%=page-1 %>">&laquo;<</a>
+    </li>
+    <% for(var i=1;i<=pages;i++){ %>
+      <li><a href="/home/index?page=<%=i %>">{{i}}</a></li>
+    <% } %>
+    <li style="display: <%=page-0+1>pages?'none' : 'inline' %>">
+      <a href="/home/index?page=<%=page-0+1 %>">>&raquo;</a>
+  </li>
+</ul>
+</div>
+
+
+{{/block}}
+{{block 'script'}}
+{{/block}}

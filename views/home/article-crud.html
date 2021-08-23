@@ -1,0 +1,84 @@
+{{extend './common/layout.html'}}
+{{block 'style'}}
+<style>
+*{
+    margin: 0;
+    padding: 0;
+}
+.content{
+    float: left;
+}
+.increase{
+    position: absolute;
+    left:100px;
+    top: 10px;
+    background-color:  rgb(219, 180, 180);
+    line-height: 35px;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+.page li{
+    float: left;
+    padding:5px;
+    border: 1px solid black;
+    margin:0 auto;
+}
+.page{
+    position: absolute;
+    left: 100px;
+    background-color: burlywood;
+}
+</style>
+{{/block}}  
+
+    {{block 'main'}}
+        {{include './common/header.html'}}
+        <div class="content">
+            <a href="article-edit" class="increase">+发布新文章</a>
+            <table border="1" cellspacing="0">
+                <tr>
+                  <th>ID</th>
+                  <th>标题</th>
+                  <th>发布时间</th>
+                  <th>操作</th>
+                </tr>
+                {{each articles}}
+                <tr>
+                  <td>{{@$value._id}}</td>
+                  <td>{{$value.articlename}}</td>
+                  <td>{{dateFormat($value.publishdate,'yyyy-mm-dd')}}</td>
+                  <td>
+                      <a href="/home/article-edit?id={{@$value._id}}"><input style="color:black;" type="button" value="编辑"></a>
+                      <a href="/home/article-delete?id={{@$value._id}}"><input style="color:black;" class="delete" type="button" data-id="{{@$value._id}}" value="删除"></a>
+                  </td>
+                </tr>
+                {{/each}}
+              </table>
+              <!-- 分页 -->
+              <ul class="page">
+                <li style="display: <%= page-1<1?'none' : 'inline' %>">
+                    <a href="/home/article-crud?page= <%=page-1%>">&laquo;<</a>
+                </li>
+                <% for(var i=1;i<=pages;i++){ %>
+                  <li><a href="/home/article-crud?page=<%=i%>">{{i}}</a></li>
+                <% } %>
+    
+                <li style="display: <%=page-0+1>pages?'none' : 'inline' %>">
+                  <a href="/home/article-crud?page=<%=page-0+1%>">>&raquo;</a>
+              </li>
+            </ul>
+      </div>
+    {{/block}}
+    {{block 'script'}}
+    <script type="text/javascript">
+    $('.delete').on('click',function(){
+       
+        //获取该文章的id
+        var id = $(this).attr('data-id');
+        
+         alert('确定删除该文章'+id);
+    })
+    </script>
+    {{/block}}

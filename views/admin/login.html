@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue@3"></script> 
+    <script src="https://unpkg.com/vue-router@4"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/admin/login.css">
+    
+</head>
+
+<body>
+    <div id="box">
+    <div id="login">
+        <form action="/admin/admin" method="post" id="loginForm">
+            <div class="user">
+            <input style="margin-top: 30px;" name="username" type="text" placeholder="请输入用户名">
+            <input style="margin:30px 0;" name="password" type="password" placeholder="请输入密码">
+        </div>
+        <button><a href="/admin/user-add">注册新用户</a></button>
+        <button type="submit">登录</button>
+        </form>
+        
+    </div>
+</div>
+</body>
+{{block 'script'}}
+<script>
+
+    //为表单添加提交事件
+// $('#loginForm').on('submit',function(){
+//     var result = serializeToJson($(this));
+//     console.log(result);
+
+//     if(result.username.trim().length == 0){
+//         alert('请输入用户名');
+//         return false;
+//     }
+//     if(result.password.trim().length == 0){
+//         alert('请输入密码');
+//         return false;
+//     }
+
+//组织表单默认提交行为
+ //return false;
+ //   })
+</script>
+<script src="/js/admin/common.js"></script>
+{{/block}}
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hee Bright</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="https://unpkg.com/vue@3"></script> 
+  <script src="https://unpkg.com/vue-router@4"></script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>
+  {{block 'link'}}{{/block}}
+  {{block 'style'}}{{/block}}
+  <style>
+    #box{
+    width: 100%;
+    height: 680px;
+    border: 1px solid rgb(189, 166, 166);
+    /* background: url("/night.gif") repeat; */
+    background-image: -webkit-cross-fade(url("/night.gif"), url("/bg.jpg"),50%);
+}
+  </style>
+</head>
+<body>
+  <div id="box">
+    {{block 'main'}}{{/block}}
+  </div>
+ 
+</body>
+
+ {{block 'script'}}{{/block}}
+</html>
